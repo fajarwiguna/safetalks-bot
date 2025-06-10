@@ -7,7 +7,11 @@ class TestCommand(commands.Cog):
         print("✅ TestCommand Cog loaded")  # Tambahan log
 
     @commands.command(name="test", help="Test Text Classification")
-    async def test_command(self, ctx, *, text: str):
+    async def test_command(self, ctx, *, text: str = None):
+        if not text:
+            await ctx.send("⚠️ Please provide a message to test.\nUsage: `!test <your text>`")
+            return
+
         print(f"📨 Received test command with text: {text}")  # Tambahan log
         result = predict_text(text)
         await ctx.send(
@@ -24,4 +28,3 @@ class TestCommand(commands.Cog):
 async def setup(bot):
     await bot.add_cog(TestCommand(bot))
     print("📦 Running setup for TestCommand")  # Tambahan log
-    bot.add_cog(TestCommand(bot))
