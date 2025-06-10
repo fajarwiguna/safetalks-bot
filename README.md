@@ -147,6 +147,7 @@ Clears violation logs. Admin-only command.
 !clear_log all
 !clear_log user <username>
 !clear_log last 3
+```
 
 ### `!set_threshold <label> <value>`
 Adjusts the confidence threshold for triggering moderation.
