@@ -1,16 +1,19 @@
 # 🛡️ SafeTalks Discord Bot
 
-SafeTalks is a real-time Discord moderation bot powered by an LSTM-based machine learning model to detect **hate speech**, **offensive language**, and **neutral content**. It automatically warns users or removes messages based on model predictions.
+**SafeTalks** is a real-time Discord moderation bot powered by an LSTM-based machine learning model. It detects **hate speech**, **offensive language**, and **neutral content** in messages, taking automated actions to keep servers safe.
 
 ---
 
 ## 🚀 Features
 
-- 🔎 Real-time detection of hate speech and offensive messages
-- ⚠️ Automatic warnings or message deletion based on confidence thresholds
-- 📊 `!test <message>` command to test classification results
-- 🧼 Automatic text cleaning and slang normalization
-- ☁️ Seamless deployment to [Railway](https://railway.app)
+- 🔍 Real-time detection of toxic messages
+- ⚠️ Automated moderation:
+  - Warns users for offensive content
+  - Deletes messages with hate speech
+- 📊 `!test <message>` command for testing predictions
+- 🧼 Built-in text cleaning and slang normalization
+- ⚙️ Modular command structure using Discord Cogs
+- ☁️ Seamless deployment via [Railway](https://railway.app)
 
 ---
 
@@ -18,34 +21,40 @@ SafeTalks is a real-time Discord moderation bot powered by an LSTM-based machine
 
 ```
 safetalks-bot/
+├── commands/
+│   ├── help.py               # !help command logic
+│   └── test.py               # !test command logic
 ├── model/
 │   └── lstm/
-│       ├── lstm_model.keras    # Trained LSTM model
-│       └── tokenizer.pkl       # Fitted tokenizer
-├── .env                        # Environment variables (BOT_TOKEN)
-├── bot.py                      # Main bot script
-├── requirements.txt            # Python dependencies
-└── README.md                   # This documentation
+│       ├── lstm_model.keras  # Trained LSTM model
+│       └── tokenizer.pkl     # Fitted tokenizer
+├── utils/
+│   ├── inference.py          # Model loading and prediction
+│   └── preprocessing.py      # Text cleaning utilities
+├── .env                      # Environment variables (BOT_TOKEN)
+├── bot.py                    # Main bot launcher
+├── requirements.txt          # Python dependencies
+└── README.md                 # This documentation
 ```
 
 ---
 
-## 🧠 Model
+## 🧠 Model Overview
 
-SafeTalks uses a custom LSTM model featuring:
-- A `SimpleAttention` layer for improved context understanding
-- A custom `focal_loss_fn` to handle imbalanced classes effectively
+SafeTalks uses a custom LSTM model with:
+- 🧠 **SimpleAttention** layer for enhanced token focus
+- 🎯 **Focal Loss** function to handle class imbalance
 
-The model classifies messages into:
+**Classifications:**
 - Hate Speech
 - Offensive
 - Neither
 
-Model and tokenizer are stored in the `model/lstm/` directory.
+The model and tokenizer are stored in `model/lstm/`.
 
 ---
 
-## ⚙️ Local Setup
+## ⚙️ Local Development
 
 1. **Clone the repository:**
    ```bash
@@ -58,7 +67,8 @@ Model and tokenizer are stored in the `model/lstm/` directory.
    pip install -r requirements.txt
    ```
 
-3. **Create a `.env` file:**
+3. **Configure environment:**
+   Create a `.env` file with:
    ```
    BOT_TOKEN=your_discord_bot_token_here
    ```
@@ -70,30 +80,32 @@ Model and tokenizer are stored in the `model/lstm/` directory.
 
 ---
 
-## ☁️ Deploying on Railway
+## ☁️ Deployment (Railway)
 
 1. Push the project to a GitHub repository.
 2. Visit [Railway](https://railway.app/).
 3. Select **New Project > Deploy from GitHub Repo**.
-4. Add `BOT_TOKEN` to Environment Variables.
-5. Click **Deploy**.
+4. Set the `BOT_TOKEN` environment variable.
+5. Click **Deploy** to go live.
 
 ---
 
-## 💡 Bot Commands
+## 💬 Bot Commands
+
+### `!help`
+Displays available bot commands.
 
 ### `!test <text>`
-
-Test a message and view its classification result.
+Classifies input text and returns the prediction with confidence scores.
 
 **Example:**
 ```
-!test I hate you all
+!test fuck you
 ```
 
 ---
 
-## 🔐 Message Moderation Logic
+## 🔐 Auto Moderation Rules
 
 - **Hate Speech** (confidence ≥ 0.80): Message deleted, user warned
 - **Offensive** (confidence ≥ 0.85): User warned
@@ -107,16 +119,16 @@ Licensed under the [MIT License](LICENSE). Free to use, modify, and distribute.
 
 ---
 
-## 🙋‍♀️ Contributing
+## 🙋‍♂️ Contributing
 
 Contributions are welcome! Submit pull requests or open issues for:
 - Moderation dashboard
-- Abuse reporting features
-- Violation logging with database integration
+- Message logging with database integration
+- Abuse reporting system
 
 ---
 
 ## 📬 Contact
 
-Developed by: Fajar Satria Wiguna  
-Email: fajarsatria991@gmail.com
+**Developer:** Fajar Satria Wiguna  
+📧 Email: [fajarsatria991@gmail.com](mailto:fajarsatria991@gmail.com)  
