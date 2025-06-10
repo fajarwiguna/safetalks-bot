@@ -1,6 +1,6 @@
 # 🛡️ SafeTalks Discord Bot
 
-**SafeTalks** is a real-time Discord moderation bot powered by an LSTM-based machine learning model. It detects **hate speech**, **offensive language**, and **neutral content** in messages, taking automated actions to keep servers safe.
+**SafeTalks** is a real-time Discord moderation bot powered by an LSTM-based machine learning model. It detects **hate speech**, **offensive language**, and **neutral content** in messages, taking automated actions to maintain safe server environments.
 
 ---
 
@@ -21,18 +21,20 @@
 
 ```
 safetalks-bot/
+├── bot.py                    # Main bot entry point
 ├── commands/
-│   ├── help.py               # !help command logic
+│   ├── __init__.py           # Package initializer
+│   ├── help.py               # !help or /help command logic
 │   └── test.py               # !test command logic
-├── model/
-│   └── lstm/
-│       ├── lstm_model.keras  # Trained LSTM model
-│       └── tokenizer.pkl     # Fitted tokenizer
 ├── utils/
-│   ├── inference.py          # Model loading and prediction
-│   └── preprocessing.py      # Text cleaning utilities
+│   ├── __init__.py           # Package initializer
+│   ├── predict.py            # Prediction functions
+│   ├── clean.py              # Text normalization and cleaning
+│   └── model_loader.py       # Model and tokenizer loading
+├── model/
+│   ├── lstm_model.keras      # Trained LSTM model
+│   └── tokenizer.pkl         # Fitted tokenizer
 ├── .env                      # Environment variables (BOT_TOKEN)
-├── bot.py                    # Main bot launcher
 ├── requirements.txt          # Python dependencies
 └── README.md                 # This documentation
 ```
@@ -50,7 +52,7 @@ SafeTalks uses a custom LSTM model with:
 - Offensive
 - Neither
 
-The model and tokenizer are stored in `model/lstm/`.
+The model and tokenizer are stored in `model/`.
 
 ---
 
