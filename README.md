@@ -7,11 +7,26 @@
 ## 🚀 Features
 
 - 🔍 Real-time detection of toxic messages
-- ⚠️ Automated moderation:
-  - Warns users for offensive content
-  - Deletes messages with hate speech
-- 📊 `!test <message>` command for testing predictions
-- 🧼 Built-in text cleaning and slang normalization
+  - Classifies messages as **Hate Speech**, **Offensive**, or **Neither**
+  - Highlights high-confidence violations instantly
+
+- ⚠️ Automated moderation system
+  - 🧠 Deletes hate speech if confidence ≥ threshold
+  - 👮 Warns users for offensive messages
+  - 🔧 Thresholds configurable via `!set_threshold`
+
+- 🗂️ Per-server violation logging
+  - View recent logs with `!log [count]`
+  - Admins can clear logs with `!clear_log <mode> [arg]`
+
+- 🧼 Built-in text preprocessing
+  - Cleans input text
+  - Normalizes slang and casing for better model accuracy
+
+- 🧪 Testable AI model
+  - Use `!test <message>` to preview predictions
+  - Shows confidence scores for all classes
+
 - ⚙️ Modular command structure using Discord Cogs
 - ☁️ Seamless deployment via [Railway](https://railway.app)
 
@@ -26,6 +41,7 @@ safetalks-bot/
 │ ├── init.py # Package initializer
 │ ├── help.py # !help command logic
 │ ├── log.py # !log command logic
+│ ├── clear_log.py # !log command logic
 │ ├── test.py # !test command logic
 │ └── threshold.py # !set_threshold command logic
 ├── utils/
@@ -118,6 +134,19 @@ Displays recent moderation logs (default: 5, max: 20 entries).
 !log      # shows 5 recent logs
 !log 10   # shows 10 most recent logs
 ```
+### `!clear_log <mode> [arg]`
+Clears violation logs. Admin-only command.
+
+**Modes:**
+- `all`: remove all logs for this server.
+- `user <username>`: remove all logs for a specific user in this server.
+- `last <n>`: remove the last `n` logs from this server.
+
+**Examples:**
+```bash
+!clear_log all
+!clear_log user ll0ttuss
+!clear_log last 3
 
 ### `!set_threshold <label> <value>`
 Adjusts the confidence threshold for triggering moderation.

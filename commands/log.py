@@ -16,22 +16,48 @@ class LogCommand(commands.Cog):
 
         with open(LOG_FILE, mode="r", encoding="utf-8") as file:
             reader = list(csv.reader(file))
-            logs = reader[1:]  # Skip header row
+            logs = reader[1:]  # skip header
 
         if not logs:
             await ctx.send("📂 No logs available yet.")
             return
 
-        count = max(1, min(count, 20))  # Clamp count between 1 and 20
-        last_logs = logs[-count:]
+        guild_id = str(ctx.guild.id) if ctx.guild else "DM"
+
+        # Filter hanya logs yang sesuai guild_id saat ini
+        logs_guild = [log for log in logs if log[1] == guild_id]
+
+        if not logs_guild:
+            await ctx.send("📂 No logs found for this server.")
+            return
+
+        count = max(1, min(count, 20))  # clamp count
+        last_logs = logs_guild[-count:]
 
         message = "📄 **Recent Violations**\n\n"
         for log in reversed(last_logs):
-            timestamp, username, userid, msg, predicted, confidence, action = log
-            message += (
-                f"• **{username}** ({predicted}, {confidence}) – {action}\n"
-                f"   _\"{msg[:80]}\"_ \n"
-            )
+            timestamp, guild, username, userid, msg, predicted, confidence, action = log
+            confidence = float(confidence)
+            action_clean = action.strip().lower()
+            msg_snippet = msg[:80].replace("`", "'")
+
+            if action_clean == "deleted":
+                action_display = "**Deleted**"
+                message += (
+                    f"• **{username}** ({predicted}, {confidence:.4f}) – {action_display}\n"
+                    f"   `\"{msg_snippet}\"`\n"
+                )
+            elif action_clean == "warned":
+                action_display = "Warned"
+                message += (
+                    f"• **{username}** ({predicted}, {confidence:.4f}) – {action_display}\n"
+                    f"   _\"{msg_snippet}\"_\n"
+                )
+            else:
+                message += (
+                    f"• **{username}** ({predicted}, {confidence:.4f}) – {action}\n"
+                    f"   _\"{msg_snippet}\"_\n"
+                )
 
         await ctx.send(message)
 

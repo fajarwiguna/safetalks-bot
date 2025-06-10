@@ -19,6 +19,7 @@ class SafeTalksBot(commands.Bot):
         await self.load_extension("commands.test")
         await self.load_extension("commands.log")
         await self.load_extension("commands.threshold")
+        await bot.load_extension("commands.clear_log")
 
 bot = SafeTalksBot(command_prefix='!', intents=intents, help_command=None)
 
