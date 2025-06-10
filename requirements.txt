@@ -1,0 +1,6 @@
+discord.py==2.5.2
+tensorflow==2.19.0
+numpy==1.26.4
+emoji==2.2.0
+pandas==2.2.3
+python-dotenv==1.1.0
