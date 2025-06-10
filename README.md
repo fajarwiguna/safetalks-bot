@@ -21,7 +21,7 @@
 
 ```
 safetalks-bot/
-├── bot.py                    # Main bot entry point
+├── main.py                    # Main bot entry point
 ├── commands/
 │   ├── __init__.py           # Package initializer
 │   ├── help.py               # !help or /help command logic
