@@ -77,7 +77,7 @@ The model and tokenizer are stored in `model/`.
 
 4. **Run the bot:**
    ```bash
-   python bot.py
+   python main.py
    ```
 
 ---
