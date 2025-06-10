@@ -6,10 +6,14 @@ class HelpCommand(commands.Cog):
 
     @commands.command(name="help", help="Shows this message")
     async def help_command(self, ctx):
-        help_text = "📘 **Help Menu**\n\n"
-        for command in self.bot.commands:
-            help_text += f"• `!{command.name}` – {command.help}\n"
+        help_text = (
+            "📘 **Help Menu**\n\n"
+            "• `!help` – Shows this message\n"
+            "• `!test <text>` – Test message classification\n"
+            "• `!log [count]` – Show recent violation logs (default: 5, max: 20)\n"
+            "• `!set_threshold <label> <value>` – Set detection threshold (admin only)\n"
+        )
         await ctx.send(help_text)
 
-async def setup(bot):  # ✅ harus async!
-    await bot.add_cog(HelpCommand(bot))  # ✅ harus pakai await
+async def setup(bot):
+    await bot.add_cog(HelpCommand(bot))

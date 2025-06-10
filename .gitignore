@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Env
+.env
+.venv/
+venv/
+ENV/
+env/
+
+# Logs
+logs/
+*.log
+
+# Model files (optional, jika generated)
+*.h5
+*.keras
+*.pkl
+*.joblib
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# MacOS
+.DS_Store
+
+# PyCharm
+.idea/
+
+# Deployment
+*.bak
+*.swp
