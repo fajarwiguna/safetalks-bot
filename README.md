@@ -145,7 +145,7 @@ Clears violation logs. Admin-only command.
 **Examples:**
 ```bash
 !clear_log all
-!clear_log user ll0ttuss
+!clear_log user <username>
 !clear_log last 3
 
 ### `!set_threshold <label> <value>`
