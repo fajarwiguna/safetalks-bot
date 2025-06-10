@@ -106,9 +106,31 @@ Displays available bot commands.
 Classifies input text and returns the prediction with confidence scores.
 
 **Example:**
-```
+```bash
 !test fuck you
 ```
+
+### `!log [count]`
+Displays recent moderation logs (default: 5, max: 20 entries).
+
+**Examples:**
+```bash
+!log      # shows 5 recent logs
+!log 10   # shows 10 most recent logs
+```
+
+### `!set_threshold <label> <value>`
+Adjusts the confidence threshold for triggering moderation.
+
+- `label`: one of `hate`, `offensive`
+- `value`: float between 0 and 1
+
+**Example:**
+```bash
+!set_threshold hate 0.92
+```
+
+*Only available to server admins.*
 
 ---
 
