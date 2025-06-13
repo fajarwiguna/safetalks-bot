@@ -28,7 +28,7 @@
   - Shows confidence scores for all classes
 
 - ⚙️ Modular command structure using Discord Cogs
-- ☁️ Seamless deployment via [Railway](https://railway.app)
+- ☁️ Seamless deployment via [Fly.io](https://fly.io/)
 
 ---
 
@@ -103,13 +103,13 @@ The model and tokenizer are stored in `model/`.
 
 ---
 
-## ☁️ Deployment (Railway)
+## ☁️ Deployment (Fly.io)
 
 1. Push the project to a GitHub repository.
-2. Visit [Railway](https://railway.app/).
-3. Select **New Project > Deploy from GitHub Repo**.
-4. Set the `BOT_TOKEN` environment variable.
-5. Click **Deploy** to go live.
+2. Visit [Fly.io](https://fly.io/)
+3. Install the Fly CLI and run `fly launch`.
+4. Set the `BOT_TOKEN` using fly secrets set `BOT_TOKEN=your_token_here.`
+5. Run `fly deploy` to go live.
 
 ---
 
